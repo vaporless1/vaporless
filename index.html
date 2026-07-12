@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vaporless</title>
+
+<meta name="description" content="Бросайте курить вейп вместе с нами">
+
+<style>
+:root{
+    --bg:#0b1020;
+    --bg2:#151d38;
+    --card:rgba(255,255,255,.06);
+    --border:rgba(255,255,255,.12);
+    --text:#ffffff;
+    --muted:#a7b0c5;
+    --accent:#5b8cff;
+    --accent2:#7b5cff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:
+        radial-gradient(circle at top,#24356f 0%,transparent 40%),
+        radial-gradient(circle at bottom,#351d63 0%,transparent 40%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+}
+
+.container{
+    width:100%;
+    max-width:680px;
+}
+
+.card{
+    background:var(--card);
+    backdrop-filter:blur(16px);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:48px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.logo{
+    width:110px;
+    height:110px;
+    margin:0 auto 28px;
+    border-radius:26px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:48px;
+    font-weight:bold;
+    color:white;
+    box-shadow:0 10px 30px rgba(91,140,255,.4);
+}
+
+h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.subtitle{
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:40px;
+}
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.button{
+    display:block;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    padding:18px 24px;
+    border-radius:16px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    transition:.25s;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(91,140,255,.35);
+}
+
+.button.secondary{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.footer{
+    margin-top:40px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.8;
+}
+
+.footer a{
+    color:#d5ddff;
+    text-decoration:none;
+}
+
+.footer a:hover{
+    text-decoration:underline;
+}
+
+@media (max-width:600px){
+
+.card{
+    padding:32px 24px;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    font-size:40px;
+}
+
+h1{
+    font-size:32px;
+}
+
+.subtitle{
+    font-size:16px;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="logo">
+🍀
+</div>
+
+<h1>vaporless</h1>
+
+<p class="subtitle">
+Бросайте курить вейп вместе с нами!
+</p>
+
+<div class="buttons">
+
+<a class="button" href="https://github.com/vaporless1/vaporless.git" target="_blank">
+cкачать APK
+</a>
+
+<a class="button" href="https://www.rustore.ru/catalog/app/com.vaporless.app" target="_blank">
+RuStore
+</a>
+
+<a class="button secondary" href="https://www.figma.com/design/YKryoN4VUSC7jvyLeC7LEg/Пресскит?node-id=0-1&p=f&t=Tg1S1u03W08ExFyX-0" target="_blank">
+пресс кит
+</a>
+
+</div>
+
+<div class="footer">
+
+<p>
+Поддержка и вопросы сотрудничества
+</p>
+
+<p>
+<a href="mailto:hello@example.com">
+vaporless@inbox.ru
+</a>
+</p>
+
+<p style="margin-top:12px;">
+© 2026 Bubnov Konstantin
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
