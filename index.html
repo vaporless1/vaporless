@@ -1,206 +1,308 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>vaporless</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaporless — бросай вейп</title>
+  <meta name="description" content="Бросайте курить вейп вместе с нами" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<meta name="description" content="Бросайте курить вейп вместе с нами">
+    :root {
+      --cyan:    #AFE4F2;
+      --cyan2:   #5ECFEC;
+      --bg:      #0E1A22;
+      --bg2:     #1A2830;
+      --card:    #1E2D38;
+      --text:    #FFFFFF;
+      --muted:   #7A9BAD;
+      --radius:  20px;
+    }
 
-<style>
-:root{
-    --bg:#0b1020;
-    --bg2:#151d38;
-    --card:rgba(255,255,255,.06);
-    --border:rgba(255,255,255,.12);
-    --text:#ffffff;
-    --muted:#a7b0c5;
-    --accent:#5b8cff;
-    --accent2:#7b5cff;
-}
+    html { scroll-behavior: smooth; }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-body{
-    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    background:
-        radial-gradient(circle at top,#24356f 0%,transparent 40%),
-        radial-gradient(circle at bottom,#351d63 0%,transparent 40%),
-        linear-gradient(180deg,var(--bg),var(--bg2));
-    color:var(--text);
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:32px;
-}
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px 60px;
+      position: relative;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(175,228,242,0.18) 0%, transparent 70%),
+                  var(--bg);
+    }
 
-.container{
-    width:100%;
-    max-width:680px;
-}
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 80% 80%, rgba(94,207,236,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
 
-.card{
-    background:var(--card);
-    backdrop-filter:blur(16px);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:48px;
-    text-align:center;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
-}
+    .logo {
+      font-size: 56px;
+      margin-bottom: 24px;
+      animation: float 4s ease-in-out infinite;
+    }
 
-.logo{
-    width:110px;
-    height:110px;
-    margin:0 auto 28px;
-    border-radius:26px;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:48px;
-    font-weight:bold;
-    color:white;
-    box-shadow:0 10px 30px rgba(91,140,255,.4);
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
 
-h1{
-    font-size:42px;
-    margin-bottom:12px;
-}
+    .hero h1 {
+      font-size: clamp(36px, 8vw, 72px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 40%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-.subtitle{
-    color:var(--muted);
-    font-size:18px;
-    line-height:1.6;
-    margin-bottom:40px;
-}
+    .hero p {
+      font-size: clamp(16px, 3vw, 20px);
+      color: var(--muted);
+      max-width: 440px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
 
-.buttons{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-}
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
 
-.button{
-    display:block;
-    text-decoration:none;
-    color:white;
-    font-weight:600;
-    padding:18px 24px;
-    border-radius:16px;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    transition:.25s;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-.button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 30px rgba(91,140,255,.35);
-}
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .btn:active { transform: translateY(0); }
 
-.button.secondary{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.1);
-}
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan2), var(--cyan));
+      color: #0E1A22;
+    }
 
-.footer{
-    margin-top:40px;
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.8;
-}
+    .btn-secondary {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid rgba(175,228,242,0.2);
+    }
 
-.footer a{
-    color:#d5ddff;
-    text-decoration:none;
-}
+    /* ── Features ── */
+    .section {
+      padding: 80px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-.footer a:hover{
-    text-decoration:underline;
-}
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--cyan2);
+      margin-bottom: 16px;
+    }
 
-@media (max-width:600px){
+    .section h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
 
-.card{
-    padding:32px 24px;
-}
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
 
-.logo{
-    width:90px;
-    height:90px;
-    font-size:40px;
-}
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid rgba(175,228,242,0.08);
+      transition: border-color 0.2s, transform 0.2s;
+    }
 
-h1{
-    font-size:32px;
-}
+    .card:hover {
+      border-color: rgba(175,228,242,0.25);
+      transform: translateY(-3px);
+    }
 
-.subtitle{
-    font-size:16px;
-}
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
 
-}
-</style>
+    .card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
 
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Download ── */
+    .download {
+      padding: 80px 24px;
+      text-align: center;
+      background: linear-gradient(180deg, transparent, rgba(175,228,242,0.05) 50%, transparent);
+    }
+
+    .download h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .download p {
+      color: var(--muted);
+      margin-bottom: 36px;
+      font-size: 16px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer p { color: var(--muted); font-size: 13px; line-height: 2; }
+    footer a { color: var(--cyan); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Divider ── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan2), var(--cyan));
+      border-radius: 2px;
+      margin: 0 auto 48px;
+    }
+
+    @media (max-width: 480px) {
+      .btn { padding: 13px 22px; font-size: 14px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="logo">🍀</div>
+    <h1>Vaporless</h1>
+    <p>Трекер затяжек, который помогает бросить вейп — шаг за шагом, день за днём.</p>
+    <div class="buttons">
+      <a href="https://www.rustore.ru/catalog/app/com.vaporless.app" class="btn btn-primary">
+        RuStore
+      </a>
+      <a href="https://github.com/vaporless1/vaporless.git" class="btn btn-secondary">
+        Скачать APK
+      </a>
+      <a href="https://www.figma.com/design/YKryoN4VUSC7jvyLeC7LEg/" class="btn btn-secondary">
+        Пресс-кит
+      </a>
+    </div>
+  </section>
 
-<div class="card">
+  <!-- Features -->
+  <div class="section">
+    <div class="section-label">Возможности</div>
+    <h2>Всё что нужно,<br>чтобы завязать</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Счётчик затяжек</h3>
+        <p>Фиксируй каждую затяжку одним нажатием. Смотри сколько делаешь за день, неделю, месяц.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📉</div>
+        <h3>План снижения</h3>
+        <p>Персональный план постепенного снижения дозы. Приложение подстраивается под твой темп.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <h3>Сэкономленные деньги</h3>
+        <p>Видишь в реальном времени сколько денег ты уже сберёг, отказавшись от лишних затяжек.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <h3>Стрик дней</h3>
+        <p>Не прерывай цепочку — каждый день в рамках лимита укрепляет твою привычку.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h3>Детальная статистика</h3>
+        <p>Графики по дням, неделям и месяцам. Видишь прогресс и понимаешь свои паттерны.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌙</div>
+        <h3>Тёмная тема</h3>
+        <p>Адаптируется под системную тему. Удобно в любое время суток.</p>
+      </div>
+    </div>
+  </div>
 
-<div class="logo">
-🍀
-</div>
+  <!-- Download CTA -->
+  <div class="download">
+    <div class="divider"></div>
+    <h2>Начни прямо сейчас</h2>
+    <p>Доступно для Android в RuStore</p>
+    <div class="buttons">
+      <a href="https://www.rustore.ru/catalog/app/com.vaporless.app" class="btn btn-primary">
+        Открыть в RuStore
+      </a>
+      <a href="https://github.com/vaporless1/vaporless.git" class="btn btn-secondary">
+        Скачать APK напрямую
+      </a>
+    </div>
+  </div>
 
-<h1>vaporless</h1>
-
-<p class="subtitle">
-Бросайте курить вейп вместе с нами!
-</p>
-
-<div class="buttons">
-
-<a class="button" href="https://github.com/vaporless1/vaporless.git" target="_blank">
-cкачать APK
-</a>
-
-<a class="button" href="https://www.rustore.ru/catalog/app/com.vaporless.app" target="_blank">
-RuStore
-</a>
-
-<a class="button secondary" href="https://www.figma.com/design/YKryoN4VUSC7jvyLeC7LEg/Пресскит?node-id=0-1&p=f&t=Tg1S1u03W08ExFyX-0" target="_blank">
-пресс кит
-</a>
-
-</div>
-
-<div class="footer">
-
-<p>
-Поддержка и вопросы сотрудничества
-</p>
-
-<p>
-<a href="mailto:hello@example.com">
-vaporless@inbox.ru
-</a>
-</p>
-
-<p style="margin-top:12px;">
-© 2026 Bubnov Konstantin
-</p>
-
-</div>
-
-</div>
-
-</div>
+  <!-- Footer -->
+  <footer>
+    <p>
+      По вопросам сотрудничества: <a href="mailto:vaporless@inbox.ru">vaporless@inbox.ru</a>
+    </p>
+    <p style="margin-top:8px;">© 2026 Bubnov Konstantin</p>
+  </footer>
 
 </body>
 </html>
